@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Ad Blocker",
+    "version": "1.0",
+    "description": "A simple ad blocker extension for YouTube.",
+    "permissions": [
+      "activeTab",
+      "declarativeNetRequest",
+      "webRequest",
+      "webRequestBlocking"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "host_permissions": ["*://*.youtube.com/*"],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

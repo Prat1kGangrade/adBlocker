@@ -1,0 +1,21 @@
+document.getElementById('blockAds').addEventListener('click', () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.scripting.executeScript({
+        target: {tabId: tabs[0].id},
+        func: () => {
+          const removeAds = () => {
+            const videoAds = document.querySelectorAll('.video-ads, .ytp-ad-module');
+            videoAds.forEach(ad => ad.remove());
+  
+            const overlayAds = document.querySelectorAll('.ytp-ad-overlay-container');
+            overlayAds.forEach(ad => ad.remove());
+  
+            const sidebarAds = document.querySelectorAll('.ytd-promoted-sparkles-text-search-renderer, .ytd-promoted-video-renderer');
+            sidebarAds.forEach(ad => ad.remove());
+          };
+          removeAds();
+        }
+      });
+    });
+  });
+  
